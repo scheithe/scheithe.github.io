@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PC-Forge Wien - Bestellung überprüfen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(135deg, #18181b 0%, #23234a 100%);
+        }
+        h1, h2, h3, .shop-title {
+            font-family: 'Orbitron', 'Inter', sans-serif;
+            letter-spacing: 2px;
+            text-shadow: 0 0 8px #00ffe7, 0 0 2px #fff;
+        }
+        .gradient-bg { background: linear-gradient(135deg, #23234a 0%, #00ffe7 100%); }
+        .gradient-accent { background: linear-gradient(135deg, #ff00cc 0%, #3333ff 100%); }
+        .glow {
+            box-shadow: 0 0 20px #00ffe7, 0 0 8px #ff00cc;
+        }
+        .product-card {
+            border: 2px solid #3333ff;
+            box-shadow: 0 0 12px #23234a;
+            transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+        }
+        .product-card:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 0 32px #00ffe7, 0 0 8px #ff00cc;
+            border-color: #00ffe7;
+        }
+        .order-btn-animate {
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0px #ff00cc; }
+            50% { box-shadow: 0 0 24px #ff00cc; }
+            100% { box-shadow: 0 0 0px #ff00cc; }
+        }
+        .product-img {
+            image-rendering: auto;
+            object-fit: cover;
+            /* Prevent pixelation and ensure smooth scaling */
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-2xl">
+        <div class="container mx-auto px-6 py-6">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-black rounded-xl flex items-center justify-center shadow-lg border-2 border-neon">
+                        <span class="text-2xl">🎮</span>
+                    </div>
+                    <div>
+                        <h1 class="shop-title text-3xl font-bold">PC-Forge Wien</h1>
+                        <p class="text-cyan-300 text-sm">Gaming Hardware &amp; Performance</p>
+                    </div>
+                </div>
+                <nav class="flex items-center space-x-6 text-sm">
+                    <a href="#" class="bg-black bg-opacity-40 px-4 py-2 rounded-lg hover:bg-opacity-60 transition-all duration-200 backdrop-blur-sm border border-cyan-400">🛒 Warenkorb</a>
+                    <span class="text-cyan-300">|</span>
+                    <a href="#" class="hover:text-cyan-300 transition-colors">👤 Mein Konto</a>
+                    <span class="text-cyan-300">|</span>
+                    <a href="#" class="hover:text-cyan-300 transition-colors">❓ Hilfe</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-6 py-8 max-w-7xl">
+        <!-- Page Title -->
+        <div class="text-center mb-8">
+            <h2 class="text-4xl font-bold text-cyan-200 mb-2 drop-shadow-lg">Bestellung überprüfen und abschicken</h2>
+            <div class="w-32 h-1 gradient-accent rounded-full mx-auto"></div>
+        </div>
+
+        <!-- Progress Steps -->
+        <div class="mb-10">
+            <div class="flex items-center justify-center space-x-4 mb-6">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg">✓</div>
+                    <span class="ml-3 font-semibold text-green-600">Lieferadresse</span>
+                </div>
+                <div class="w-16 h-1 bg-green-500 rounded-full"></div>
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg">✓</div>
+                    <span class="ml-3 font-semibold text-green-600">Zahlungsart</span>
+                </div>
+                <div class="w-16 h-1 bg-purple-500 rounded-full"></div>
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold shadow-lg glow">3</div>
+                    <span class="ml-3 font-bold text-purple-600">Prüfen & Bestellen</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid lg:grid-cols-5 gap-8">
+            <!-- Left Column - Address & Payment Info -->
+            <div class="lg:col-span-2 space-y-6">
+                <!-- Delivery Address -->
+                <div class="bg-gray-900 rounded-2xl card-shadow p-6 border border-blue-900">
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 bg-blue-900 rounded-lg flex items-center justify-center mr-3">
+                            <span class="text-blue-300">🏠</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-cyan-200">Liefer- & Rechnungsadresse</h3>
+                    </div>
+                    <div class="bg-gray-800 rounded-xl p-4 text-gray-200 space-y-2 border border-blue-900">
+                        <p class="font-semibold text-lg text-cyan-200">Merve Yilmaz</p>
+                        <p>Mustergasse 12/3</p>
+                        <p>1220 Wien</p>
+                        <p>🇦🇹 Österreich</p>
+                        <p class="text-blue-400">📧 m.yilmaz@email.com</p>
+                    </div>
+                </div>
+
+                <!-- Order Details -->
+                <div class="bg-gray-900 rounded-2xl card-shadow p-6 border border-purple-900">
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 bg-green-900 rounded-lg flex items-center justify-center mr-3">
+                            <span class="text-green-300">📋</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-cyan-200">Bestelldetails</h3>
+                    </div>
+                    <div class="space-y-3 text-gray-200">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-400">Bestellnummer:</span>
+                            <span class="font-bold text-purple-400">PF-2025-09-08-4711</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-400">Bestelldatum:</span>
+                            <span class="font-semibold">08.09.2025</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Method -->
+                <div class="bg-gray-900 rounded-2xl card-shadow p-6 border border-yellow-900">
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 bg-yellow-900 rounded-lg flex items-center justify-center mr-3">
+                            <span class="text-yellow-300">💳</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-cyan-200">Zahlungsweise</h3>
+                    </div>
+                    <div class="bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl p-4 flex items-center border border-yellow-900">
+                        <div class="w-12 h-8 bg-gradient-to-r from-blue-900 to-purple-900 rounded-lg flex items-center justify-center mr-3">
+                            <span class="text-white text-xs font-bold">MC</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-cyan-200">Mastercard</p>
+                            <p class="text-gray-400 text-sm">**** **** **** 1234</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Shopping Cart -->
+            <div class="lg:col-span-3">
+                <div class="bg-gray-900 rounded-2xl card-shadow overflow-hidden border border-blue-900">
+                    <!-- Cart Header -->
+                    <div class="gradient-bg text-white p-6">
+                        <div class="flex items-center">
+                            <span class="text-2xl mr-3">🛒</span>
+                            <h3 class="text-2xl font-bold">Ihr Warenkorb</h3>
+                        </div>
+                    </div>
+
+                    <!-- Cart Items -->
+                    <div class="p-6 space-y-4">
+                        <!-- Item 1 -->
+                        <div class="product-card bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-4 border-2 border-blue-700 glow">
+                            <div class="flex items-start space-x-4">
+                                <img src="cpu.jpg" alt="Intel Core i7-14700K" class="product-img w-20 h-20 rounded-xl object-cover border-2 border-blue-500 shadow-md">
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div>
+                                            <div class="text-xs text-purple-400 font-semibold mb-1">BESTELLPOSITION 1</div>
+                                            <h4 class="font-bold text-lg text-cyan-200">Intel Core i7-14700K, LGA1700</h4>
+                                            <p class="text-sm text-gray-400">Hersteller: Intel | Art.Nr: CPU-INT-0147</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="text-xs text-gray-400 mb-1">Menge: 1</p>
+                                            <p class="text-sm text-gray-300">Einzelpreis: <span class="font-semibold text-cyan-300">429,90 €</span></p>
+                                            <p class="text-xs text-purple-400 font-semibold">Gesamtpreis:</p>
+                                            <p class="font-bold text-lg text-purple-400">429,90 €</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="product-card bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-4 border-2 border-green-700 glow">
+                            <div class="flex items-start space-x-4">
+                                <img src="gpu.jpg" alt="NVIDIA GeForce RTX 4070 Super" class="product-img w-20 h-20 rounded-xl object-cover border-2 border-green-500 shadow-md">
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div>
+                                            <div class="text-xs text-purple-400 font-semibold mb-1">BESTELLPOSITION 2</div>
+                                            <h4 class="font-bold text-lg text-cyan-200">NVIDIA GeForce RTX 4070 Super, 12GB</h4>
+                                            <p class="text-sm text-gray-400">Hersteller: NVIDIA | Art.Nr: GPU-NVI-4070S</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="text-xs text-gray-400 mb-1">Menge: 1</p>
+                                            <p class="text-sm text-gray-300">Einzelpreis: <span class="font-semibold text-cyan-300">649,00 €</span></p>
+                                            <p class="text-xs text-purple-400 font-semibold">Gesamtpreis:</p>
+                                            <p class="font-bold text-lg text-purple-400">649,00 €</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="product-card bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-4 border-2 border-green-400 glow">
+                            <div class="flex items-start space-x-4">
+                                <img src="ram.jpg" alt="Corsair Vengeance DDR5 32GB Kit 6000" class="product-img w-20 h-20 rounded-xl object-cover border-2 border-green-400 shadow-md">
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div>
+                                            <div class="text-xs text-purple-400 font-semibold mb-1">BESTELLPOSITION 3</div>
+                                            <h4 class="font-bold text-lg text-cyan-200">Corsair Vengeance DDR5 32GB Kit 6000</h4>
+                                            <p class="text-sm text-gray-400">Hersteller: Corsair | Art.Nr: RAM-COR-D532G</p>
+                                            <div class="bg-green-500 text-white px-2 py-1 rounded-full text-xs font-bold inline-block mt-1 glow">
+                                                🎉 -10% AKTION
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="text-xs text-gray-400 mb-1">Menge: 2</p>
+                                            <p class="text-sm text-gray-300">Einzelpreis: <span class="strikethrough text-gray-500">129,90 €</span> <span class="font-bold text-green-400">116,91 €</span></p>
+                                            <p class="text-xs text-purple-400 font-semibold">Gesamtpreis:</p>
+                                            <p class="font-bold text-lg text-purple-400">233,82 €</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Item 4 -->
+                        <div class="product-card bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-4 border-2 border-yellow-700 glow">
+                            <div class="flex items-start space-x-4">
+                                <img src="ssd.jpg" alt="Samsung 990 Pro 2TB M.2 NVMe SSD" class="product-img w-20 h-20 rounded-xl object-cover border-2 border-yellow-500 shadow-md">
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-start mb-2">
+                                        <div>
+                                            <div class="text-xs text-purple-400 font-semibold mb-1">BESTELLPOSITION 4</div>
+                                            <h4 class="font-bold text-lg text-cyan-200">Samsung 990 Pro 2TB M.2 NVMe SSD</h4>
+                                            <p class="text-sm text-gray-400">Hersteller: Samsung | Art.Nr: SSD-SAM-990P2</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="text-xs text-gray-400 mb-1">Menge: 1</p>
+                                            <p class="text-sm text-gray-300">Einzelpreis: <span class="font-semibold text-cyan-300">165,00 €</span></p>
+                                            <p class="text-xs text-purple-400 font-semibold">Gesamtpreis:</p>
+                                            <p class="font-bold text-lg text-purple-400">165,00 €</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Summary -->
+                    <div class="bg-gray-800 p-6 border-t border-gray-700 text-gray-200">
+                        <div class="space-y-3">
+                            <div class="flex justify-between text-lg">
+                                <span class="text-gray-400">Zwischensumme:</span>
+                                <span class="font-semibold">1.966,72 €</span>
+                            </div>
+                            <div class="flex justify-between text-lg">
+                                <span class="text-gray-400">Versandkosten:</span>
+                                <span class="font-semibold">5,90 €</span>
+                            </div>
+                            <div class="border-t-2 border-gray-600 pt-4">
+                                <div class="flex justify-between text-2xl font-bold">
+                                    <span class="text-gray-200">Gesamtsumme:</span>
+                                    <span class="text-purple-400">1.972,62 €</span>
+                                </div>
+                                <p class="text-sm text-gray-400 text-right mt-1">(inkl. 20% MwSt.)</p>
+                            </div>
+                        </div>
+
+                        <!-- Order Button -->
+                        <div class="mt-8">
+                            <button id="orderButton" class="order-btn-animate w-full gradient-accent text-white font-bold py-6 px-8 text-xl rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 glow">
+                                🚀 KOSTENPFLICHTIG BESTELLEN
+                            </button>
+                            <p class="text-center text-sm text-gray-400 mt-3">
+                                🔒 Sichere SSL-Verschlüsselung | ⚡ Sofortige Bestellbestätigung
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="fixed inset-0 bg-black bg-opacity-60 hidden items-center justify-center z-50 backdrop-blur-sm">
+        <div class="bg-gray-900 rounded-3xl p-8 max-w-lg mx-4 text-center card-shadow transform scale-95 transition-transform border border-purple-900">
+            <div class="w-20 h-20 gradient-accent rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <span class="text-4xl text-white">🎉</span>
+            </div>
+            <h2 class="text-3xl font-bold text-cyan-200 mb-3">Bestellung erfolgreich!</h2>
+            <p class="text-gray-300 mb-6 text-lg">Vielen Dank für Ihre Bestellung! Sie erhalten in Kürze eine Bestätigungs-E-Mail mit allen Details.</p>
+            <div class="bg-gradient-to-r from-gray-800 to-gray-900 rounded-2xl p-6 mb-8 border border-purple-900">
+                <p class="text-sm text-gray-400 mb-2">Ihre Bestellnummer</p>
+                <p class="font-bold text-2xl text-purple-400">PF-2025-09-08-4711</p>
+                <p class="text-sm text-gray-400 mt-2">📧 Bestätigung wird an m.yilmaz@email.com gesendet</p>
+            </div>
+            <button id="closeModal" class="w-full gradient-bg text-white py-4 rounded-2xl font-bold text-lg hover:shadow-lg transition-all duration-300">
+                Perfekt! Weiter zum Dashboard
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Order confirmation functionality
+        document.getElementById('orderButton').addEventListener('click', function() {
+            const modal = document.getElementById('confirmationModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Animate modal appearance
+            setTimeout(() => {
+                modal.querySelector('.transform').classList.remove('scale-95');
+                modal.querySelector('.transform').classList.add('scale-100');
+            }, 10);
+        });
+
+        // Close modal functionality
+        document.getElementById('closeModal').addEventListener('click', function() {
+            const modal = document.getElementById('confirmationModal');
+            modal.querySelector('.transform').classList.remove('scale-100');
+            modal.querySelector('.transform').classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('confirmationModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                document.getElementById('closeModal').click();
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'977617bde4cccb7b',t:'MTc1NjU3NTgzMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
